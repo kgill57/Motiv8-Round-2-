@@ -156,7 +156,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js"></script>
-    <script src="scripts/calendarscript.js" type="text/javascript"></script>
+    <script src="Scripts/calendarscript.js" type="text/javascript"></script>
     <script src="Scripts/Sidebar.js"></script>
       
     </div>
