@@ -29,92 +29,113 @@ public partial class Reports : System.Web.UI.Page
         Label6.Visible = false;
         Label7.Visible = false;
         Label8.Visible = false;
+        Label9.Visible = false;
 
-        if (ChooseReport.SelectedValue == "Employer Report")
+        if (ChooseReport.SelectedValue == "Application Report")
         {
-            EmployerReport.Visible = true;
+            ApplicationReport.Visible = true;
+            EmployerReport.Visible = false;
             EventPostReport.Visible = false;
-            PasswordReport.Visible = false;
-            RewardReport.Visible = false;
+            EventReport.Visible = false;
             RewardEarnedReport.Visible = false;
             RewardProviderReport.Visible = false;
+            RewardReport.Visible = false;
+            TransactionReport.Visible = false;
+            UserReport.Visible = false;
+        }
+        else if (ChooseReport.SelectedValue == "Employer Report")
+        {
+            ApplicationReport.Visible = false;
+            EmployerReport.Visible = true;
+            EventPostReport.Visible = false;
+            EventReport.Visible = false;
+            RewardEarnedReport.Visible = false;
+            RewardProviderReport.Visible = false;
+            RewardReport.Visible = false;
             TransactionReport.Visible = false;
             UserReport.Visible = false;
         }
         else if (ChooseReport.SelectedValue == "Event Post Report")
         {
+            ApplicationReport.Visible = false;
             EmployerReport.Visible = false;
             EventPostReport.Visible = true;
-            PasswordReport.Visible = false;
-            RewardReport.Visible = false;
+            EventReport.Visible = false;
             RewardEarnedReport.Visible = false;
             RewardProviderReport.Visible = false;
+            RewardReport.Visible = false;
             TransactionReport.Visible = false;
             UserReport.Visible = false;
         }
-        else if (ChooseReport.SelectedValue == "Password Report")
+        else if (ChooseReport.SelectedValue == "Event Report")
         {
+            ApplicationReport.Visible = false;
             EmployerReport.Visible = false;
             EventPostReport.Visible = false;
-            PasswordReport.Visible = true;
+            EventReport.Visible = true;
+            RewardEarnedReport.Visible = false;
+            RewardProviderReport.Visible = false;
             RewardReport.Visible = false;
-            RewardEarnedReport.Visible = false;
-            RewardProviderReport.Visible = false;
-            TransactionReport.Visible = false;
-            UserReport.Visible = false;
-        }
-        else if (ChooseReport.SelectedValue == "Reward Report")
-        {
-            EmployerReport.Visible = false;
-            EventPostReport.Visible = false;
-            PasswordReport.Visible = false;
-            RewardReport.Visible = true;
-            RewardEarnedReport.Visible = false;
-            RewardProviderReport.Visible = false;
             TransactionReport.Visible = false;
             UserReport.Visible = false;
         }
         else if (ChooseReport.SelectedValue == "Reward Earned Report")
         {
+            ApplicationReport.Visible = false;
             EmployerReport.Visible = false;
             EventPostReport.Visible = false;
-            PasswordReport.Visible = false;
-            RewardReport.Visible = false;
+            EventReport.Visible = false;
             RewardEarnedReport.Visible = true;
             RewardProviderReport.Visible = false;
+            RewardReport.Visible = false;
             TransactionReport.Visible = false;
             UserReport.Visible = false;
         }
         else if (ChooseReport.SelectedValue == "Reward Provider Report")
         {
+            ApplicationReport.Visible = false;
             EmployerReport.Visible = false;
             EventPostReport.Visible = false;
-            PasswordReport.Visible = false;
-            RewardReport.Visible = false;
+            EventReport.Visible = false;
             RewardEarnedReport.Visible = false;
             RewardProviderReport.Visible = true;
+            RewardReport.Visible = false;
+            TransactionReport.Visible = false;
+            UserReport.Visible = false;
+        }
+        else if (ChooseReport.SelectedValue == "Reward Report")
+        {
+            ApplicationReport.Visible = false;
+            EmployerReport.Visible = false;
+            EventPostReport.Visible = false;
+            EventReport.Visible = false;
+            RewardEarnedReport.Visible = false;
+            RewardProviderReport.Visible = false;
+            RewardReport.Visible = true;
             TransactionReport.Visible = false;
             UserReport.Visible = false;
         }
         else if (ChooseReport.SelectedValue == "Transaction Report")
         {
+            ApplicationReport.Visible = false;
             EmployerReport.Visible = false;
             EventPostReport.Visible = false;
-            PasswordReport.Visible = false;
-            RewardReport.Visible = false;
+            EventReport.Visible = false;
             RewardEarnedReport.Visible = false;
             RewardProviderReport.Visible = false;
+            RewardReport.Visible = false;
             TransactionReport.Visible = true;
             UserReport.Visible = false;
         }
         else if (ChooseReport.SelectedValue == "User Report")
         {
+            ApplicationReport.Visible = false;
             EmployerReport.Visible = false;
             EventPostReport.Visible = false;
-            PasswordReport.Visible = false;
-            RewardReport.Visible = false;
+            EventReport.Visible = false;
             RewardEarnedReport.Visible = false;
             RewardProviderReport.Visible = false;
+            RewardReport.Visible = false;
             TransactionReport.Visible = false;
             UserReport.Visible = true;
         }

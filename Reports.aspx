@@ -15,12 +15,13 @@
     <div>
         <asp:Label ID="Label1" runat="server" Text="Choose the report you would like to view: "></asp:Label>
         <asp:DropDownList ID="ChooseReport" AutoPostBack="True" Width="476px" runat="server" OnSelectedIndexChanged="ChooseReport_SelectedIndexChanged">
+                <asp:ListItem>Application Report</asp:ListItem>
                 <asp:ListItem>Employer Report</asp:ListItem>
                 <asp:ListItem>Event Post Report</asp:ListItem>
-                <asp:ListItem>Password Report</asp:ListItem>
-                <asp:ListItem>Reward Report</asp:ListItem>
+                <asp:ListItem>Event Report</asp:ListItem>
                 <asp:ListItem>Reward Earned Report</asp:ListItem>
                 <asp:ListItem>Reward Provider Report</asp:ListItem>
+                <asp:ListItem>Reward Report</asp:ListItem>
                 <asp:ListItem>Transaction Report</asp:ListItem>
                 <asp:ListItem>User Report</asp:ListItem>
         </asp:DropDownList>
@@ -28,6 +29,22 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
         
+        <rsweb:ReportViewer ID="ApplicationReport" runat="server" Font-Names="Verdana" Font-Size="8pt" BackColor="" ClientIDMode="AutoID" HighlightBackgroundColor="" 
+            InternalBorderColor="204, 204, 204" InternalBorderStyle="Solid" InternalBorderWidth="1px" LinkActiveColor="" LinkActiveHoverColor="" LinkDisabledColor="" PrimaryButtonBackgroundColor=""
+            PrimaryButtonForegroundColor="" PrimaryButtonHoverBackgroundColor="" PrimaryButtonHoverForegroundColor="" SecondaryButtonBackgroundColor="" SecondaryButtonForegroundColor=""
+            SecondaryButtonHoverBackgroundColor="" SecondaryButtonHoverForegroundColor="" SplitterBackColor="" ToolbarDividerColor="" ToolbarForegroundColor="" ToolbarForegroundDisabledColor=""
+            ToolbarHoverBackgroundColor="" ToolbarHoverForegroundColor="" ToolBarItemBorderColor="" ToolBarItemBorderStyle="Solid" ToolBarItemBorderWidth="1px" ToolBarItemHoverBackColor=""
+            ToolBarItemPressedBorderColor="51, 102, 153" ToolBarItemPressedBorderStyle="Solid" ToolBarItemPressedBorderWidth="1px" ToolBarItemPressedHoverBackColor="153, 187, 226" Width="1046px">
+            <LocalReport ReportPath="ReportFiles/ApplicationReport.rdlc">
+                <DataSources>
+                    <rsweb:ReportDataSource DataSourceId="ObjectDataSource1" Name="DataSet1" />
+                </DataSources>
+            </LocalReport>
+        </rsweb:ReportViewer>
+
+        <asp:Label ID="Label2" runat="server" Text="Employer Report" ></asp:Label>
+      <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetData" TypeName="lab4DataSetTableAdapters.ApplicationTableAdapter"></asp:ObjectDataSource>
+
         <rsweb:ReportViewer ID="EmployerReport" runat="server" Font-Names="Verdana" Font-Size="8pt" BackColor="" ClientIDMode="AutoID" HighlightBackgroundColor="" 
             InternalBorderColor="204, 204, 204" InternalBorderStyle="Solid" InternalBorderWidth="1px" LinkActiveColor="" LinkActiveHoverColor="" LinkDisabledColor="" PrimaryButtonBackgroundColor=""
             PrimaryButtonForegroundColor="" PrimaryButtonHoverBackgroundColor="" PrimaryButtonHoverForegroundColor="" SecondaryButtonBackgroundColor="" SecondaryButtonForegroundColor=""
@@ -36,14 +53,14 @@
             ToolBarItemPressedBorderColor="51, 102, 153" ToolBarItemPressedBorderStyle="Solid" ToolBarItemPressedBorderWidth="1px" ToolBarItemPressedHoverBackColor="153, 187, 226" Width="1046px">
             <LocalReport ReportPath="ReportFiles/EmployerReport.rdlc">
                 <DataSources>
-                    <rsweb:ReportDataSource DataSourceId="ObjectDataSource1" Name="DataSet1" />
+                    <rsweb:ReportDataSource DataSourceId="ObjectDataSource2" Name="DataSet1" />
                 </DataSources>
             </LocalReport>
         </rsweb:ReportViewer>
+    
+        <asp:ObjectDataSource ID="ObjectDataSource2" runat="server" SelectMethod="GetData" TypeName="lab4DataSetTableAdapters.EmployerTableAdapter"></asp:ObjectDataSource>
 
-        <asp:Label ID="Label2" runat="server" Text="Event Post Report" ></asp:Label>
-      <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetData" TypeName="lab4DataSetTableAdapters.EmployerTableAdapter"></asp:ObjectDataSource>
-
+        <asp:Label ID="Label3" runat="server" Text="Event Post Report" ></asp:Label>
         <rsweb:ReportViewer ID="EventPostReport" runat="server" Font-Names="Verdana" Font-Size="8pt" BackColor="" ClientIDMode="AutoID" HighlightBackgroundColor="" 
             InternalBorderColor="204, 204, 204" InternalBorderStyle="Solid" InternalBorderWidth="1px" LinkActiveColor="" LinkActiveHoverColor="" LinkDisabledColor="" PrimaryButtonBackgroundColor=""
             PrimaryButtonForegroundColor="" PrimaryButtonHoverBackgroundColor="" PrimaryButtonHoverForegroundColor="" SecondaryButtonBackgroundColor="" SecondaryButtonForegroundColor=""
@@ -52,44 +69,28 @@
             ToolBarItemPressedBorderColor="51, 102, 153" ToolBarItemPressedBorderStyle="Solid" ToolBarItemPressedBorderWidth="1px" ToolBarItemPressedHoverBackColor="153, 187, 226" Width="1046px">
             <LocalReport ReportPath="ReportFiles/EventPostReport.rdlc">
                 <DataSources>
-                    <rsweb:ReportDataSource DataSourceId="ObjectDataSource2" Name="DataSet1" />
-                </DataSources>
-            </LocalReport>
-        </rsweb:ReportViewer>
-    
-        <asp:ObjectDataSource ID="ObjectDataSource2" runat="server" SelectMethod="GetData" TypeName="lab4DataSetTableAdapters.EventPostTableAdapter"></asp:ObjectDataSource>
-
-        <asp:Label ID="Label3" runat="server" Text="Event Post Report" ></asp:Label>
-        <rsweb:ReportViewer ID="PasswordReport" runat="server" Font-Names="Verdana" Font-Size="8pt" BackColor="" ClientIDMode="AutoID" HighlightBackgroundColor="" 
-            InternalBorderColor="204, 204, 204" InternalBorderStyle="Solid" InternalBorderWidth="1px" LinkActiveColor="" LinkActiveHoverColor="" LinkDisabledColor="" PrimaryButtonBackgroundColor=""
-            PrimaryButtonForegroundColor="" PrimaryButtonHoverBackgroundColor="" PrimaryButtonHoverForegroundColor="" SecondaryButtonBackgroundColor="" SecondaryButtonForegroundColor=""
-            SecondaryButtonHoverBackgroundColor="" SecondaryButtonHoverForegroundColor="" SplitterBackColor="" ToolbarDividerColor="" ToolbarForegroundColor="" ToolbarForegroundDisabledColor=""
-            ToolbarHoverBackgroundColor="" ToolbarHoverForegroundColor="" ToolBarItemBorderColor="" ToolBarItemBorderStyle="Solid" ToolBarItemBorderWidth="1px" ToolBarItemHoverBackColor=""
-            ToolBarItemPressedBorderColor="51, 102, 153" ToolBarItemPressedBorderStyle="Solid" ToolBarItemPressedBorderWidth="1px" ToolBarItemPressedHoverBackColor="153, 187, 226" Width="1046px">
-            <LocalReport ReportPath="ReportFiles/PasswordReport.rdlc">
-                <DataSources>
                     <rsweb:ReportDataSource DataSourceId="ObjectDataSource3" Name="DataSet1" />
                 </DataSources>
             </LocalReport>
         </rsweb:ReportViewer>
     
-        <asp:ObjectDataSource ID="ObjectDataSource3" runat="server" SelectMethod="GetData" TypeName="lab4DataSetTableAdapters.PasswordTableAdapter"></asp:ObjectDataSource>
+        <asp:ObjectDataSource ID="ObjectDataSource3" runat="server" SelectMethod="GetData" TypeName="lab4DataSetTableAdapters.EventPostTableAdapter"></asp:ObjectDataSource>
 
-        <asp:Label ID="Label4" runat="server" Text="Reward Report" ></asp:Label>
-        <rsweb:ReportViewer ID="RewardReport" runat="server" Font-Names="Verdana" Font-Size="8pt" BackColor="" ClientIDMode="AutoID" HighlightBackgroundColor="" 
+        <asp:Label ID="Label4" runat="server" Text="Event Report" ></asp:Label>
+        <rsweb:ReportViewer ID="EventReport" runat="server" Font-Names="Verdana" Font-Size="8pt" BackColor="" ClientIDMode="AutoID" HighlightBackgroundColor="" 
             InternalBorderColor="204, 204, 204" InternalBorderStyle="Solid" InternalBorderWidth="1px" LinkActiveColor="" LinkActiveHoverColor="" LinkDisabledColor="" PrimaryButtonBackgroundColor=""
             PrimaryButtonForegroundColor="" PrimaryButtonHoverBackgroundColor="" PrimaryButtonHoverForegroundColor="" SecondaryButtonBackgroundColor="" SecondaryButtonForegroundColor=""
             SecondaryButtonHoverBackgroundColor="" SecondaryButtonHoverForegroundColor="" SplitterBackColor="" ToolbarDividerColor="" ToolbarForegroundColor="" ToolbarForegroundDisabledColor=""
             ToolbarHoverBackgroundColor="" ToolbarHoverForegroundColor="" ToolBarItemBorderColor="" ToolBarItemBorderStyle="Solid" ToolBarItemBorderWidth="1px" ToolBarItemHoverBackColor=""
             ToolBarItemPressedBorderColor="51, 102, 153" ToolBarItemPressedBorderStyle="Solid" ToolBarItemPressedBorderWidth="1px" ToolBarItemPressedHoverBackColor="153, 187, 226" Width="1046px">
-            <LocalReport ReportPath="ReportFiles/RewardReport.rdlc">
+            <LocalReport ReportPath="ReportFiles/EventReport.rdlc">
                 <DataSources>
                     <rsweb:ReportDataSource DataSourceId="ObjectDataSource4" Name="DataSet1" />
                 </DataSources>
             </LocalReport>
         </rsweb:ReportViewer>
     
-        <asp:ObjectDataSource ID="ObjectDataSource4" runat="server" SelectMethod="GetData" TypeName="lab4DataSetTableAdapters.RewardTableAdapter"></asp:ObjectDataSource>
+        <asp:ObjectDataSource ID="ObjectDataSource4" runat="server" SelectMethod="GetData" TypeName="lab4DataSetTableAdapters.EventTableAdapter"></asp:ObjectDataSource>
 
         <asp:Label ID="Label5" runat="server" Text="Reward Earned Report" ></asp:Label>
         <rsweb:ReportViewer ID="RewardEarnedReport" runat="server" Font-Names="Verdana" Font-Size="8pt" BackColor="" ClientIDMode="AutoID" HighlightBackgroundColor="" 
@@ -122,6 +123,23 @@
         </rsweb:ReportViewer>
     
         <asp:ObjectDataSource ID="ObjectDataSource6" runat="server" SelectMethod="GetData" TypeName="lab4DataSetTableAdapters.RewardProviderTableAdapter"></asp:ObjectDataSource>
+
+        <asp:Label ID="Label9" runat="server" Text="Reward Report" ></asp:Label>
+        <rsweb:ReportViewer ID="RewardReport" runat="server" Font-Names="Verdana" Font-Size="8pt" BackColor="" ClientIDMode="AutoID" HighlightBackgroundColor="" 
+            InternalBorderColor="204, 204, 204" InternalBorderStyle="Solid" InternalBorderWidth="1px" LinkActiveColor="" LinkActiveHoverColor="" LinkDisabledColor="" PrimaryButtonBackgroundColor=""
+            PrimaryButtonForegroundColor="" PrimaryButtonHoverBackgroundColor="" PrimaryButtonHoverForegroundColor="" SecondaryButtonBackgroundColor="" SecondaryButtonForegroundColor=""
+            SecondaryButtonHoverBackgroundColor="" SecondaryButtonHoverForegroundColor="" SplitterBackColor="" ToolbarDividerColor="" ToolbarForegroundColor="" ToolbarForegroundDisabledColor=""
+            ToolbarHoverBackgroundColor="" ToolbarHoverForegroundColor="" ToolBarItemBorderColor="" ToolBarItemBorderStyle="Solid" ToolBarItemBorderWidth="1px" ToolBarItemHoverBackColor=""
+            ToolBarItemPressedBorderColor="51, 102, 153" ToolBarItemPressedBorderStyle="Solid" ToolBarItemPressedBorderWidth="1px" ToolBarItemPressedHoverBackColor="153, 187, 226" Width="1046px">
+            <LocalReport ReportPath="ReportFiles/RewardReport.rdlc">
+                <DataSources>
+                    <rsweb:ReportDataSource DataSourceId="ObjectDataSource9" Name="DataSet1" />
+                </DataSources>
+            </LocalReport>
+        </rsweb:ReportViewer>
+    
+        <asp:ObjectDataSource ID="ObjectDataSource9" runat="server" SelectMethod="GetData" TypeName="lab4DataSetTableAdapters.RewardTableAdapter"></asp:ObjectDataSource>
+
 
         <asp:Label ID="Label7" runat="server" Text="Transaction Report" ></asp:Label>
         <rsweb:ReportViewer ID="TransactionReport" runat="server" Font-Names="Verdana" Font-Size="8pt" BackColor="" ClientIDMode="AutoID" HighlightBackgroundColor="" 
