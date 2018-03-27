@@ -32,11 +32,10 @@
             </div>
 
 			<div class="row count-down">
-            <img src="icons/rwds-03.png" style="width:70%;">
+            <img src="icons/rwds-03.png" style="width:70%; padding-top:50px;">
 			<h1 style="font-size:8vw;">$5,000</h1>
-			</div>
-			<div class="row count-down">
-				<p style="font-size:2vw;">Welcome to MOTIV8: A web application that helps inner company motivation to continue to follow the companies values. Login to see what rewards you can earn and see what rewards you can give. </p>
+                <h4 style="font-size:3vw; margin-top:2em; text-decoration: underline;"> <strong> Welcome to MOTIV8 </strong></h4>
+				<p style="font-size:2vw; padding-left:50px; padding-right:50px;  padding-bottom:50px; text-align:center;">A web application that helps inner company motivation to continue to follow the companies values. Login to see what rewards you can earn and see what rewards you can give. </p>
 			</div>
             
 </div>
