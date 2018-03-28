@@ -23,10 +23,10 @@ public class EventDAO
     {
         List<CalendarEvent> events = new List<CalendarEvent>();
         SqlConnection con = new SqlConnection(connectionString);
-        SqlCommand cmd = new SqlCommand("SELECT event_id, description, title, event_start, event_end, all_day FROM Event where event_start>=@start AND event_end<=@end", con);
+        SqlCommand cmd = new SqlCommand("SELECT event_id, description, title, event_start, event_end, all_day, ProviderID FROM Event where ProviderID=@ProviderID AND event_start>=@start AND event_end<=@end", con);
         cmd.Parameters.Add("@start", SqlDbType.DateTime).Value = start;
         cmd.Parameters.Add("@end", SqlDbType.DateTime).Value = end;
-
+        cmd.Parameters.AddWithValue("@ProviderID", (int)System.Web.HttpContext.Current.Session["ProviderID"]);
         using (con)
         {
             con.Open();
@@ -40,7 +40,8 @@ public class EventDAO
                     description = Convert.ToString(reader["description"]),
                     start = Convert.ToDateTime(reader["event_start"]),
                     end = Convert.ToDateTime(reader["event_end"]),
-                    allDay = Convert.ToBoolean(reader["all_day"])
+                    allDay = Convert.ToBoolean(reader["all_day"]),
+                    providerID = Convert.ToInt32(reader["ProviderID"])
                 });
             }
         }
@@ -107,12 +108,13 @@ public class EventDAO
 
         //insert
         SqlConnection con = new SqlConnection(connectionString);
-        SqlCommand cmd = new SqlCommand("INSERT INTO Event(title, description, event_start, event_end, all_day) VALUES(@title, @description, @event_start, @event_end, @all_day)", con);
+        SqlCommand cmd = new SqlCommand("INSERT INTO Event VALUES(@title, @description, @event_start, @event_end, @all_day, @ProviderID)", con);
         cmd.Parameters.Add("@title", SqlDbType.VarChar).Value = cevent.title;
         cmd.Parameters.Add("@description", SqlDbType.VarChar).Value = cevent.description;
         cmd.Parameters.Add("@event_start", SqlDbType.DateTime).Value = cevent.start;
         cmd.Parameters.Add("@event_end", SqlDbType.DateTime).Value = cevent.end;
         cmd.Parameters.Add("@all_day", SqlDbType.Bit).Value = cevent.allDay;
+        cmd.Parameters.Add("@ProviderID", SqlDbType.Int).Value = cevent.providerID;
 
         int key = 0;
         using (con)
@@ -121,12 +123,13 @@ public class EventDAO
             cmd.ExecuteNonQuery();
 
             //get primary key of inserted row
-            cmd = new SqlCommand("SELECT max(event_id) FROM Event where title=@title AND description=@description AND event_start=@event_start AND event_end=@event_end AND all_day=@all_day", con);
+            cmd = new SqlCommand("SELECT max(event_id) FROM Event where title=@title AND description=@description AND event_start=@event_start AND event_end=@event_end AND all_day=@all_day AND ProviderID=@ProviderID", con);
             cmd.Parameters.Add("@title", SqlDbType.VarChar).Value = cevent.title;
             cmd.Parameters.Add("@description", SqlDbType.VarChar).Value = cevent.description;
             cmd.Parameters.Add("@event_start", SqlDbType.DateTime).Value = cevent.start;
             cmd.Parameters.Add("@event_end", SqlDbType.DateTime).Value = cevent.end;
             cmd.Parameters.Add("@all_day", SqlDbType.Bit).Value = cevent.allDay;
+            cmd.Parameters.Add("@ProviderID", SqlDbType.Int).Value = cevent.providerID;
 
             key = (int)cmd.ExecuteScalar();
         }

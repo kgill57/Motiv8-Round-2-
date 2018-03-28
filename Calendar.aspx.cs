@@ -39,6 +39,7 @@ public partial class Calendar : System.Web.UI.Page
                 " update description to: " + cevent.description;
             }
 
+
         }
 
         return "unable to update event with id:" + cevent.id + " title : " + cevent.title +
@@ -96,7 +97,8 @@ public partial class Calendar : System.Web.UI.Page
             description = improperEvent.description,
             start = Convert.ToDateTime(improperEvent.start),
             end = Convert.ToDateTime(improperEvent.end),
-            allDay = improperEvent.allDay
+            allDay = improperEvent.allDay,
+            providerID = (int)System.Web.HttpContext.Current.Session["ProviderID"],
         };
 
         if (CheckAlphaNumeric(cevent.title) && CheckAlphaNumeric(cevent.description))
