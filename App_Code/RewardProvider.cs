@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,19 +31,7 @@ public class RewardProvider
     // Getters
     public int getProviderID(int userID)
     {
-        SqlConnection con = new SqlConnection();
-        con.ConnectionString = ConfigurationManager.ConnectionStrings["lab4ConnectionString"].ConnectionString;
-        con.Open();
-
-        SqlCommand cmd = new SqlCommand();
-        cmd.CommandText = "SELECT ProviderID FROM [User] WHERE UserID = " + userID;
-        cmd.Connection = con;
-
-        int providerID = (int)cmd.ExecuteScalar();
-
-        con.Close();
-
-        return providerID;
+        return this.providerID;
     }
 
     public String getName()

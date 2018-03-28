@@ -34,18 +34,48 @@ public partial class LoginPage : System.Web.UI.Page
         SqlCommand select = new SqlCommand();
         select.Connection = con;
 
-
         select.Parameters.Add(new System.Data.SqlClient.SqlParameter("@email", System.Data.SqlDbType.VarChar));
         select.Parameters["@email"].Value = txtEmail.Text;
 
         select.CommandText = "SELECT EmployedStatus FROM [User] WHERE Email = @email";
 
-
         bool status = Convert.ToBoolean(select.ExecuteScalar());
         if (status == false)
         {
+            var emails = new List<String>();
+            select.CommandText = "SELECT ProviderEmail FROM [RewardProvider]";
+            SqlDataReader rs;
+            rs = select.ExecuteReader();
+            
+            while (rs.Read())
+            {
+                emails.Add(rs["ProviderEmail"].ToString());
+            }
+
+            rs.Close();
+
+            foreach (var result in emails)
+            {
+                if (email == result)
+                {                   
+                    select.CommandText = "SELECT ProviderID FROM [RewardProvider] WHERE ProviderEmail = @email";
+                    Session["ProviderID"] = (int)select.ExecuteScalar();
+
+                    select.CommandText = "SELECT ProviderName FROM [RewardProvider] WHERE ProviderEmail = @email";
+                    Session["ProviderName"] = (String)(select.ExecuteScalar());
+
+                    Response.Redirect("rpHome.aspx");                  
+                }
+
+                else
+                {
+                    lblError.Visible = true;
+                    lblError.Text = "Invalid email and/or password.";
+                }
+            }
+
             lblError.Visible = true;
-            lblError.Text = "Email does not exist";
+            lblError.Text = "Invalid email and/or password.";
             return;
         }
 
@@ -54,11 +84,8 @@ public partial class LoginPage : System.Web.UI.Page
         String hash = (String)select.ExecuteScalar();
 
         bool admin;
-        bool provider;
         select.CommandText = "(SELECT [Admin] FROM [dbo].[User] WHERE [Email] = @email)";
         admin = Convert.ToBoolean(select.ExecuteScalar());
-        select.CommandText = "(SELECT [RewardProvider] FROM [User] WHERE [Email] = @email)";
-        provider = Convert.ToBoolean(select.ExecuteScalar());
         con.Close();
 
         bool verify = SimpleHash.VerifyHash(password, "MD5", hash);
@@ -70,10 +97,6 @@ public partial class LoginPage : System.Web.UI.Page
             if (admin)
             {
                 Response.Redirect("AdminPage.aspx");
-            }
-            else if(provider)
-            {
-                Response.Redirect("rpRewards.aspx");
             }
             else
             {
@@ -99,7 +122,7 @@ public partial class LoginPage : System.Web.UI.Page
 
         select.Parameters.AddWithValue("@email", email);
 
-        select.CommandText = "SELECT UserID  FROM [User] WHERE Email = @email";
+        select.CommandText = "SELECT UserID FROM [User] WHERE Email = @email";
         Session["UserID"] = (int)select.ExecuteScalar();
 
         select.CommandText = "SELECT FName FROM [User] WHERE Email = @email";
@@ -133,11 +156,6 @@ public partial class LoginPage : System.Web.UI.Page
 
         select.CommandText = "SELECT AccountBalance FROM [User] WHERE Email = @email";
         Session["AccountBalance"] = (Convert.ToDecimal(select.ExecuteScalar()));
-
-
-
-
-
 
     }
 

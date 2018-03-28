@@ -4,7 +4,6 @@
 
 <div style ="position: relative; top: 60px;">
 
-
     <div style = "float: left; width: 15%;">
     <ul id="slide-out" class="side-nav fixed" style = "width:15%;">
             <li><div class="user-view">

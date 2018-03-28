@@ -16,6 +16,12 @@
               <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <style type='text/css'>
+        h5 {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+           }
+
         #calendar
         {
             font-size: large;
@@ -73,9 +79,9 @@
                 <h5><asp:Label ID="lblUser" runat="server" Text="" CssClass ="user1"></asp:Label></h5>
                 <asp:Label ID="lblBalance" runat="server" ></asp:Label>
             </div></li>
-          <li> <a href="rpRewards.aspx">Rewards</a></li>
-          <li> <a href="Calendar.aspx">Calendar</a></li>
-          <li> <a href="rpSettings.aspx">Settings</a></li>
+          <li><a href="rpRewards.aspx">Rewards</a></li>
+          <li><a href="Calendar.aspx">Calendar</a></li>
+          <li><a href="rpSettings.aspx">Settings</a></li>
           <li><a class="waves-effect" href="Default.aspx">Logout</a></li>
           <li><a><i class="material-icons nav1 modal-trigger" data-target="modal4"> help</i></a>
           </ul>

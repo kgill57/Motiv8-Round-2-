@@ -19,15 +19,21 @@
           <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
           <!--modal style-->
-          <style type="text/css">
-            .modal {
-                  max-height: 90%;
+              <style type="text/css">
+                h5 {
+                    margin-left: auto;
+                    margin-right: auto;
+                    text-align: center;
                 }
 
+                .modal {
+                      max-height: 90%;
+                    }
+
                 .modal-form-row {
-                  margin-bottom: 0px;
-                }
-          </style>
+                      margin-bottom: 0px;
+                    }
+              </style>
         
     </head>
     <body>

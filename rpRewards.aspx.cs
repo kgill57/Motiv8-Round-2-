@@ -76,11 +76,11 @@ public partial class rpRewards : System.Web.UI.Page
             SqlCommand select = new SqlCommand();
             select.Connection = con;
 
-            select.CommandText = "SELECT ProviderPicture FROM [dbo].[RewardProvider] WHERE ProviderID =" + rp.getProviderID((int)Session["UserID"]);
+            select.CommandText = "SELECT ProviderPicture FROM [dbo].[RewardProvider] WHERE ProviderID = " + Session["ProviderID"];
             string currentPicture = (String)select.ExecuteScalar();
 
             profilePicture.ImageUrl = "~/Images/" + currentPicture;
-            lblUser.Text = (String)Session["FName"] + " " + (String)Session["LName"];
+            lblUser.Text = (String)Session["ProviderName"];
         }
         catch (Exception)
         {
@@ -90,5 +90,5 @@ public partial class rpRewards : System.Web.UI.Page
         con.Close();
     }
 
-   
+
 }

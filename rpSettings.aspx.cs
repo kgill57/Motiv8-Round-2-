@@ -152,11 +152,12 @@ public partial class rpSettings : System.Web.UI.Page
         upload.ExecuteNonQuery();
         con.Close();
 
-        lblResult.Text = "Picture uploaded";
+        lblResult.Text = "Picture uploaded.";
     }
 
     protected void loadProfilePicture()
     {
+        RewardProvider rp = new RewardProvider();
         con.Open();
 
         try
@@ -164,14 +165,13 @@ public partial class rpSettings : System.Web.UI.Page
             SqlCommand select = new SqlCommand();
             select.Connection = con;
 
-            select.CommandText = "SELECT ProviderPicture FROM [dbo].[RewardProvider] WHERE ProviderID =" + getProviderID();
-            con.Open();
+            select.CommandText = "SELECT ProviderPicture FROM [dbo].[RewardProvider] WHERE ProviderID = " + Session["ProviderID"];
             string currentPicture = (String)select.ExecuteScalar();
 
             profilePicture.ImageUrl = "~/Images/" + currentPicture;
-            lblUser.Text = (String)Session["FName"] + " " + (String)Session["LName"];
+            lblUser.Text = (String)Session["ProviderName"];
         }
-        catch(Exception)
+        catch (Exception)
         {
 
         }

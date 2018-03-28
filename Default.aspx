@@ -1,6 +1,5 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="LoginPage" %>
 
-
 <asp:Content ID="ContentHeader" ContentPlaceHolderID="ContentPlaceHolderHeader" Runat="Server">
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li class="input-field col s6">
@@ -19,11 +18,7 @@
               </ul>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-              
-               
-  
-
-
+                         
 <div class="table count-down">
             <div class="row count-down">
                 <asp:Button ID="btnApply" runat="server" Text="Apply To Join Motiv8" CssClass="btn" OnClick="btnApply_Click" />

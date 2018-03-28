@@ -22,11 +22,17 @@
 
               <!--modal style-->
               <style type="text/css">
+                h5 {
+                    margin-left: auto;
+                    margin-right: auto;
+                    text-align: center;
+                }
+
                 .modal {
                       max-height: 90%;
                     }
 
-                    .modal-form-row {
+                .modal-form-row {
                       margin-bottom: 0px;
                     }
               </style>
@@ -43,7 +49,7 @@
                 <asp:Label ID="lblBalance" runat="server" ></asp:Label>
             </div></li>
           <li> <a href="rpRewards.aspx">Rewards</a></li>
-          <li> <a href="rpEvents.aspx"> Calendar</a></li>
+          <li> <a href="Calendar.aspx">Calendar</a></li>
           <li> <a href="rpSettings.aspx">Settings</a></li>
           <li><a class="waves-effect" href="Default.aspx">Logout</a></li>
           <li><a><i class="material-icons nav1 modal-trigger" data-target="modal4"> help</i></a>
