@@ -129,8 +129,6 @@ public partial class rpHome : System.Web.UI.Page
             panelFooter[i].Controls.Add(deleteButton[i]);
             panelPost[i].Controls.Add(panelFooter[i]);
 
-
-
             Panel1.Controls.Add(panelPost[i]);
         }
         con.Close();
@@ -147,7 +145,7 @@ public partial class rpHome : System.Web.UI.Page
         //Add Label for reward name
         Label lblMsg = new Label();
         lblMsg.CssClass = "popupLabels";
-        lblMsg.Text = "Are you sure you want to delete " + reward[itemNumber].getRewardName();
+        lblMsg.Text = "Are you sure you want to delete " + reward[itemNumber].getRewardName() + "?";
         popup.Controls.Add(lblMsg);
 
         Button btnDelete = new Button();
@@ -163,11 +161,6 @@ public partial class rpHome : System.Web.UI.Page
         btnCancel.Click += new EventHandler(cancel_Click);
         popup.Controls.Add(btnCancel);
 
-
-
-
-
-
         popup.CssClass = "popupPanel";
         masterPanel.Controls.Add(popup);
 
@@ -181,5 +174,10 @@ public partial class rpHome : System.Web.UI.Page
     protected void cancel_Click(object sender, EventArgs e)
     {
         ClientScript.RegisterStartupScript(typeof(Page), "autoPostback", ClientScript.GetPostBackEventReference(this, String.Empty), true);
+    }
+
+    protected void btnAddReward_Click(object sender, EventArgs e)
+    {
+        addReward.Visible = true;
     }
 }

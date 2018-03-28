@@ -29,7 +29,7 @@
 			<h1 style="font-size:8vw;">$5,000</h1>
 			</div>
 			<div class="row count-down">
-				<p style="font-size:2vw;">Welcome to MOTIV8: A web application that helps inner company motivation to continue to follow the companies values. Login to see what rewards you can earn and see what rewards you can give. </p>
+				<p style="font-size:2vw;">Welcome to MOTIV8: a web application that helps internal company motivation to continue to follow the company's values. Log in to see what rewards you can earn and see what rewards you can give. </p>
 			</div>
             
 </div>

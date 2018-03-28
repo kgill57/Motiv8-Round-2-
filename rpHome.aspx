@@ -44,7 +44,7 @@
                 <h5><asp:Label ID="lblUser" runat="server" Text="" CssClass ="user1" ></asp:Label></h5>
                 <asp:Label ID="lblBalance" runat="server" ></asp:Label>
             </div></li>
-          <li><a href="rpRewards.aspx">Rewards</a></li>
+          <li><a href="rpHome.aspx">Rewards</a></li>
           <li><a href="Calendar.aspx">Calendar</a></li>
           <li><a href="rpSettings.aspx">Settings</a></li>
           <li><a class="waves-effect" href="Default.aspx">Logout</a></li>
@@ -57,17 +57,28 @@
         <body>
             <div style ="float: right; width: 85%;">
         <div style = "margin-left:auto; margin-right:auto; width:85%;">
-        <nav class="feednav" >
+        <div class="container rewards">
+            <nav class="feednav">
             <div class="nav-wrapper">
-                <a class="brand-logo nav1 panel">Rewards</a>
+                <a href="" class="brand-logo nav1 panel">Your Current Rewards</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down"> 
-                    
-    
-                    <asp:Label ID = "lblResult" runat ="server"/>
-                    <%-- Options Here --%>
+                    <li><asp:Button runat="server" ID="btnAddReward" Text="Add Reward" CssClass="nav1 modal-trigger" data-target="modal2" OnClick="btnAddReward_Click"/></li>
                 </ul>
             </div>
-        </nav>
+            </nav>
+            <br />
+            <br />
+            <div runat="server" id="addReward" visible="false" style="width: 40%; margin-left:auto; margin-right:auto; background-color:white; padding:20px;">
+                <asp:Panel runat="server" Visible="true" ID="RewardPanel">
+                <asp:TextBox runat="server" ID="txtRewardName" placeholder="Reward Name"></asp:TextBox>
+                <asp:TextBox runat="server" ID="txtRewardQuantity" placeholder="Reward Quantity"></asp:TextBox>
+                <asp:TextBox runat="server" ID="txtRewardAmount" placeholder="Reward Amount"></asp:TextBox>
+                <asp:Button runat="server" ID="btnUploadPic" Text="Upload Photo" />
+                <asp:Button ID="btnInsert" runat="server" Text="Add Reward" />
+                <asp:Label ID="lblResult" runat="server" Text=""></asp:Label>
+                    </asp:Panel>
+                    
+                </div>
             <asp:Panel ID ="Panel1" runat="server"></asp:Panel>
        
         </div>
