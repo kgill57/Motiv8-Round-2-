@@ -57,10 +57,10 @@ public partial class LoginPage : System.Web.UI.Page
             foreach (var result in emails)
             {
                 if (email == result)
-                {                   
+                {                  
                     select.CommandText = "SELECT ProviderID FROM [RewardProvider] WHERE ProviderEmail = @email";
                     Session["ProviderID"] = (int)select.ExecuteScalar();
-
+                 
                     select.CommandText = "SELECT ProviderName FROM [RewardProvider] WHERE ProviderEmail = @email";
                     Session["ProviderName"] = (String)(select.ExecuteScalar());
 

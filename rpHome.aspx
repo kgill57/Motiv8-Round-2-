@@ -5,6 +5,7 @@
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <asp:Panel ID ="masterPanel" runat ="server">
     <html>
         <head>
             <title> MOTIV8 | Reward Provider Home</title>
@@ -54,7 +55,24 @@
 
         <!-- End Side Nav-->
         <body>
-
+            <div style ="float: right; width: 85%;">
+        <div style = "margin-left:auto; margin-right:auto; width:85%;">
+        <nav class="feednav" >
+            <div class="nav-wrapper">
+                <a class="brand-logo nav1 panel">Rewards</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down"> 
+                    
+    
+                    <asp:Label ID = "lblResult" runat ="server"/>
+                    <%-- Options Here --%>
+                </ul>
+            </div>
+        </nav>
+            <asp:Panel ID ="Panel1" runat="server"></asp:Panel>
+       
+        </div>
+    </div>
         </body>
     </html>
+        </asp:Panel>
 </asp:Content>
