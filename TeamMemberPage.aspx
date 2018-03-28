@@ -26,7 +26,7 @@
             <li> <a href="BuyRewards.aspx">Buy Rewards</a></li>
             <li> <a href="MyRewards.aspx">My Rewards</a></li>
             <li><a href="AccountSettingTeamMember.aspx">Account Settings</a></li>
-            <li><a href="CommunityPostFeed.aspx">Community Events</a></li>
+            <li><a href="userCalendar.aspx">Community Events</a></li>
             <li><a href="/Default.aspx">Logout</a></li>
 
     </ul>

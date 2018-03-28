@@ -35,6 +35,10 @@ public partial class AdminPage : System.Web.UI.Page
             profilePicture.ImageUrl = "~/Images/" + currentPicture;
             lblUser.Text = (String)Session["FName"] + " " + (String)Session["LName"];
 
+            SqlCommand balance = new SqlCommand("SELECT TotalBalance FROM Employer WHERE EmployerID =" + Convert.ToString((int)Session["EmployerID"]), con);
+            double totalBalance = Convert.ToDouble(balance.ExecuteScalar());
+
+            lblBalance.Text = totalBalance.ToString("$#.00");
         }
         catch (Exception)
         {
@@ -47,8 +51,6 @@ public partial class AdminPage : System.Web.UI.Page
     {
         //Populates the nav bar with the admin's first and last name
         lblUser.Text = (String)Session["FName"] + " " + (String)Session["LName"];
-
-
 
         //sql connection
         SqlConnection con = new SqlConnection();
