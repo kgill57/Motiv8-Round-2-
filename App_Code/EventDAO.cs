@@ -20,32 +20,65 @@ public class EventDAO
 
     //this method retrieves all events within range start-end
     public static List<CalendarEvent> getEvents(DateTime start, DateTime end)
-    {
-        List<CalendarEvent> events = new List<CalendarEvent>();
-        SqlConnection con = new SqlConnection(connectionString);
-        SqlCommand cmd = new SqlCommand("SELECT event_id, description, title, event_start, event_end, all_day, ProviderID FROM Event where ProviderID=@ProviderID AND event_start>=@start AND event_end<=@end", con);
-        cmd.Parameters.Add("@start", SqlDbType.DateTime).Value = start;
-        cmd.Parameters.Add("@end", SqlDbType.DateTime).Value = end;
-        cmd.Parameters.AddWithValue("@ProviderID", (int)System.Web.HttpContext.Current.Session["ProviderID"]);
-        using (con)
+    {       
+        if ((int?)System.Web.HttpContext.Current.Session["ProviderID"] == null)
         {
-            con.Open();
-            SqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
+            List<CalendarEvent> userEvents = new List<CalendarEvent>();
+            SqlConnection userCon = new SqlConnection(connectionString);
+            SqlCommand userCmd = new SqlCommand("SELECT event_id, description, title, event_start, event_end, all_day, ProviderID FROM Event WHERE event_start>=@start AND event_end<=@end", userCon);
+            userCmd.Parameters.Add("@start", SqlDbType.DateTime).Value = start;
+            userCmd.Parameters.Add("@end", SqlDbType.DateTime).Value = end;
+            using (userCon)
             {
-                events.Add(new CalendarEvent()
+                userCon.Open();
+                SqlDataReader reader = userCmd.ExecuteReader();
+                while (reader.Read())
                 {
-                    id = Convert.ToInt32(reader["event_id"]),
-                    title = Convert.ToString(reader["title"]),
-                    description = Convert.ToString(reader["description"]),
-                    start = Convert.ToDateTime(reader["event_start"]),
-                    end = Convert.ToDateTime(reader["event_end"]),
-                    allDay = Convert.ToBoolean(reader["all_day"]),
-                    providerID = Convert.ToInt32(reader["ProviderID"])
-                });
+                    userEvents.Add(new CalendarEvent()
+                    {
+                        id = Convert.ToInt32(reader["event_id"]),
+                        title = Convert.ToString(reader["title"]),
+                        description = Convert.ToString(reader["description"]),
+                        start = Convert.ToDateTime(reader["event_start"]),
+                        end = Convert.ToDateTime(reader["event_end"]),
+                        allDay = Convert.ToBoolean(reader["all_day"]),
+                        providerID = Convert.ToInt32(reader["ProviderID"])
+                    });
+                }
             }
+            return userEvents;
         }
-        return events;
+
+        else
+        {
+            List<CalendarEvent> events = new List<CalendarEvent>();
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand("SELECT event_id, description, title, event_start, event_end, all_day, ProviderID FROM Event where ProviderID=@ProviderID AND event_start>=@start AND event_end<=@end", con);
+            cmd.Parameters.Add("@start", SqlDbType.DateTime).Value = start;
+            cmd.Parameters.Add("@end", SqlDbType.DateTime).Value = end;
+            cmd.Parameters.AddWithValue("@ProviderID", (int)System.Web.HttpContext.Current.Session["ProviderID"]);
+            using (con)
+            {
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    events.Add(new CalendarEvent()
+                    {
+                        id = Convert.ToInt32(reader["event_id"]),
+                        title = Convert.ToString(reader["title"]),
+                        description = Convert.ToString(reader["description"]),
+                        start = Convert.ToDateTime(reader["event_start"]),
+                        end = Convert.ToDateTime(reader["event_end"]),
+                        allDay = Convert.ToBoolean(reader["all_day"]),
+                        providerID = Convert.ToInt32(reader["ProviderID"])
+                    });
+                }
+            }
+            return events;
+        }
+        
+        
         //side note: if you want to show events only related to particular users,
         //if user id of that user is stored in session as Session["userid"]
         //the event table also contains an extra field named 'user_id' to mark the event for that particular user

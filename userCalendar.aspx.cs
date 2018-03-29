@@ -25,25 +25,27 @@ public partial class userCalendar : System.Web.UI.Page
 
     protected void loadProfilePicture()
     {
-        RewardProvider rp = new RewardProvider();
+        SqlConnection con = new SqlConnection();
+        con.ConnectionString = ConfigurationManager.ConnectionStrings["lab4ConnectionString"].ConnectionString;
         con.Open();
 
         try
         {
+
             SqlCommand select = new SqlCommand();
             select.Connection = con;
 
-            select.CommandText = "SELECT ProviderPicture FROM [dbo].[RewardProvider] WHERE ProviderID = " + Session["ProviderID"];
+            select.CommandText = "SELECT ProfilePicture FROM [dbo].[User] WHERE UserID =" + Convert.ToString((int)Session["UserID"]);
             string currentPicture = (String)select.ExecuteScalar();
 
             profilePicture.ImageUrl = "~/Images/" + currentPicture;
-            lblUser.Text = (String)Session["ProviderName"];
+            lblUser.Text = (String)Session["FName"] + " " + (String)Session["LName"] + "  $" + ((Decimal)Session["AccountBalance"]).ToString("0.##");
+
         }
         catch (Exception)
         {
 
         }
-
         con.Close();
     }
 }
